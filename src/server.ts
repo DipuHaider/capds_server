@@ -10,7 +10,7 @@ async function main() {
     await mongoose.connect(config.database_url as string);
 
     server = app.listen(config.port, () => {
-      console.log(`CAPDS_Server is listening on port ${config.port}`);
+      console.log(`CAPDS_Server is listening on port ${config.port} 😃`);
     });
   } catch (err) {
     console.log(err);
