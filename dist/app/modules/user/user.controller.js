@@ -14,24 +14,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserControllers = void 0;
 const http_status_1 = __importDefault(require("http-status"));
+const catchAsync_1 = __importDefault(require("../../utils/catchAsync"));
 const sendResponse_1 = __importDefault(require("../../utils/sendResponse"));
 const user_service_1 = require("./user.service");
-const createStudent = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const { password, student: studentData } = req.body;
-        // const zodParsedData = studentValidationSchema.parse(studentData);
-        const result = yield user_service_1.UserServices.createStudentIntoDB(password, studentData);
-        (0, sendResponse_1.default)(res, {
-            statusCode: http_status_1.default.OK,
-            success: true,
-            message: 'Student is created succesfully',
-            data: result,
-        });
-    }
-    catch (err) {
-        next(err);
-    }
-});
+const createStudent = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { password, student: studentData } = req.body;
+    const result = yield user_service_1.UserServices.createStudentIntoDB(password, studentData);
+    (0, sendResponse_1.default)(res, {
+        statusCode: http_status_1.default.OK,
+        success: true,
+        message: 'Student is created succesfully',
+        data: result,
+    });
+}));
 exports.UserControllers = {
     createStudent,
 };
