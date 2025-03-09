@@ -142,6 +142,10 @@ const studentSchema = new mongoose_1.Schema({
         type: Boolean,
         default: false,
     },
+    academicDepartment: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'AcademicDepartment',
+    },
 }, {
     toJSON: {
         virtuals: true,

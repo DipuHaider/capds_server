@@ -12,54 +12,52 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.StudentControllers = void 0;
+exports.AcademicDepartmentControllers = void 0;
 const http_status_1 = __importDefault(require("http-status"));
 const catchAsync_1 = __importDefault(require("../../utils/catchAsync"));
 const sendResponse_1 = __importDefault(require("../../utils/sendResponse"));
-const student_service_1 = require("./student.service");
-const getSingleStudent = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { studentId } = req.params;
-    const result = yield student_service_1.StudentServices.getSingleStudentFromDB(studentId);
+const academicDepartment_service_1 = require("./academicDepartment.service");
+const createAcademicDepartment = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield academicDepartment_service_1.AcademicDepartmentServices.createAcademicDepartmentIntoDB(req.body);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Student is retrieved successfully',
+        message: 'Academic department is created successfully',
         data: result,
     });
 }));
-const getAllStudents = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield student_service_1.StudentServices.getAllStudentsFromDB();
+const getAllAcademicDepartments = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield academicDepartment_service_1.AcademicDepartmentServices.getAllAcademicDepartmentsFromDB();
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Student are retrieved successfully',
+        message: 'Academic departments are retrieved successfully',
         data: result,
     });
 }));
-const updateStudent = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { studentId } = req.params;
-    const { student } = req.body;
-    const result = yield student_service_1.StudentServices.updateStudentIntoDB(studentId, student);
+const getSingleAcademicDepartment = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { departmentId } = req.params;
+    const result = yield academicDepartment_service_1.AcademicDepartmentServices.getSingleAcademicDepartmentFromDB(departmentId);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Student is updated successfully',
+        message: 'Academic department is retrieved successfully',
         data: result,
     });
 }));
-const deleteStudent = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { studentId } = req.params;
-    const result = yield student_service_1.StudentServices.deleteStudentFromDB(studentId);
+const updateAcademicDepartment = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { departmentId } = req.params;
+    const result = yield academicDepartment_service_1.AcademicDepartmentServices.updateAcademicDepartmentIntoDB(departmentId, req.body);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Student is deleted successfully',
+        message: 'Academic department is updated successfully',
         data: result,
     });
 }));
-exports.StudentControllers = {
-    getAllStudents,
-    getSingleStudent,
-    deleteStudent,
-    updateStudent,
+exports.AcademicDepartmentControllers = {
+    createAcademicDepartment,
+    getAllAcademicDepartments,
+    getSingleAcademicDepartment,
+    updateAcademicDepartment,
 };

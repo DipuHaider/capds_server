@@ -12,54 +12,52 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.StudentControllers = void 0;
+exports.AcademicFacultyControllers = void 0;
 const http_status_1 = __importDefault(require("http-status"));
 const catchAsync_1 = __importDefault(require("../../utils/catchAsync"));
 const sendResponse_1 = __importDefault(require("../../utils/sendResponse"));
-const student_service_1 = require("./student.service");
-const getSingleStudent = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { studentId } = req.params;
-    const result = yield student_service_1.StudentServices.getSingleStudentFromDB(studentId);
+const academicFaculty_service_1 = require("./academicFaculty.service");
+const createAcademicFaculty = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield academicFaculty_service_1.AcademicFacultyServices.createAcademicFacultyIntoDB(req.body);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Student is retrieved successfully',
+        message: 'Academic faculty is created successfully',
         data: result,
     });
 }));
-const getAllStudents = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield student_service_1.StudentServices.getAllStudentsFromDB();
+const getAllAcademicFaculties = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield academicFaculty_service_1.AcademicFacultyServices.getAllAcademicFacultiesFromDB();
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Student are retrieved successfully',
+        message: 'Academic faculties are retrieved successfully',
         data: result,
     });
 }));
-const updateStudent = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { studentId } = req.params;
-    const { student } = req.body;
-    const result = yield student_service_1.StudentServices.updateStudentIntoDB(studentId, student);
+const getSingleAcademicFaculty = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { facultyId } = req.params;
+    const result = yield academicFaculty_service_1.AcademicFacultyServices.getSingleAcademicFacultyFromDB(facultyId);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Student is updated successfully',
+        message: 'Academic faculty is retrieved successfully',
         data: result,
     });
 }));
-const deleteStudent = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { studentId } = req.params;
-    const result = yield student_service_1.StudentServices.deleteStudentFromDB(studentId);
+const updateAcademicFaculty = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { facultyId } = req.params;
+    const result = yield academicFaculty_service_1.AcademicFacultyServices.updateAcademicFacultyIntoDB(facultyId, req.body);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Student is deleted successfully',
+        message: 'Academic faculty is updated successfully',
         data: result,
     });
 }));
-exports.StudentControllers = {
-    getAllStudents,
-    getSingleStudent,
-    deleteStudent,
-    updateStudent,
+exports.AcademicFacultyControllers = {
+    createAcademicFaculty,
+    getAllAcademicFaculties,
+    getSingleAcademicFaculty,
+    updateAcademicFaculty,
 };
