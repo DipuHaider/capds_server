@@ -60,6 +60,7 @@ const createStudentIntoDB = (password, payload) => __awaiter(void 0, void 0, voi
     catch (err) {
         yield session.abortTransaction();
         yield session.endSession();
+        console.log(err);
         throw new Error('Failed to create student');
     }
 });

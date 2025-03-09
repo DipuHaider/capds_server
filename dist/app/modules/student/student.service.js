@@ -105,6 +105,7 @@ const deleteStudentFromDB = (id) => __awaiter(void 0, void 0, void 0, function* 
     catch (err) {
         yield session.abortTransaction();
         yield session.endSession();
+        console.log(err);
         throw new Error('Failed to delete student');
     }
 });
