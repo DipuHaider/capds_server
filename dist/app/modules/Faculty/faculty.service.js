@@ -23,94 +23,70 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.StudentServices = void 0;
+exports.FacultyServices = void 0;
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const http_status_1 = __importDefault(require("http-status"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const QueryBuilder_1 = __importDefault(require("../../builder/QueryBuilder"));
 const AppError_1 = __importDefault(require("../../errors/AppError"));
 const user_model_1 = require("../user/user.model");
-const student_constant_1 = require("./student.constant");
-const student_model_1 = require("./student.model");
-const getAllStudentsFromDB = (query) => __awaiter(void 0, void 0, void 0, function* () {
-    const studentQuery = new QueryBuilder_1.default(student_model_1.Student.find()
-        .populate('admissionSemester')
-        .populate({
-        path: 'academicDepartment',
-        populate: {
-            path: 'academicFaculty',
-        },
-    }), query)
-        .search(student_constant_1.studentSearchableFields)
+const faculty_constant_1 = require("./faculty.constant");
+const faculty_model_1 = require("./faculty.model");
+const getAllFacultiesFromDB = (query) => __awaiter(void 0, void 0, void 0, function* () {
+    const facultyQuery = new QueryBuilder_1.default(faculty_model_1.Faculty.find().populate('academicDepartment'), query)
+        .search(faculty_constant_1.FacultySearchableFields)
         .filter()
         .sort()
         .paginate()
         .fields();
-    const result = yield studentQuery.modelQuery;
+    const result = yield facultyQuery.modelQuery;
     return result;
 });
-const getSingleStudentFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield student_model_1.Student.findById(id)
-        .populate('admissionSemester')
-        .populate({
-        path: 'academicDepartment',
-        populate: {
-            path: 'academicFaculty',
-        },
-    });
+const getSingleFacultyFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield faculty_model_1.Faculty.findById(id).populate('academicDepartment');
     return result;
 });
-const updateStudentIntoDB = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, guardian, localGuardian } = payload, remainingStudentData = __rest(payload, ["name", "guardian", "localGuardian"]);
-    const modifiedUpdatedData = Object.assign({}, remainingStudentData);
+const updateFacultyIntoDB = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
+    const { name } = payload, remainingFacultyData = __rest(payload, ["name"]);
+    const modifiedUpdatedData = Object.assign({}, remainingFacultyData);
     if (name && Object.keys(name).length) {
         for (const [key, value] of Object.entries(name)) {
             modifiedUpdatedData[`name.${key}`] = value;
         }
     }
-    if (guardian && Object.keys(guardian).length) {
-        for (const [key, value] of Object.entries(guardian)) {
-            modifiedUpdatedData[`guardian.${key}`] = value;
-        }
-    }
-    if (localGuardian && Object.keys(localGuardian).length) {
-        for (const [key, value] of Object.entries(localGuardian)) {
-            modifiedUpdatedData[`localGuardian.${key}`] = value;
-        }
-    }
-    // console.log(modifiedUpdatedData);
-    const result = yield student_model_1.Student.findByIdAndUpdate(id, modifiedUpdatedData, {
+    const result = yield faculty_model_1.Faculty.findByIdAndUpdate(id, modifiedUpdatedData, {
         new: true,
         runValidators: true,
     });
     return result;
 });
-const deleteStudentFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+const deleteFacultyFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const session = yield mongoose_1.default.startSession();
     try {
         session.startTransaction();
-        const deletedStudent = yield student_model_1.Student.findByIdAndUpdate(id, { isDeleted: true }, { new: true, session });
-        if (!deletedStudent) {
-            throw new AppError_1.default(http_status_1.default.BAD_REQUEST, 'Failed to delete student');
+        const deletedFaculty = yield faculty_model_1.Faculty.findByIdAndUpdate(id, { isDeleted: true }, { new: true, session });
+        if (!deletedFaculty) {
+            throw new AppError_1.default(http_status_1.default.BAD_REQUEST, 'Failed to delete faculty');
         }
-        // get user _id from deletedStudent
-        const userId = deletedStudent.user;
+        // get user _id from deletedFaculty
+        const userId = deletedFaculty.user;
         const deletedUser = yield user_model_1.User.findByIdAndUpdate(userId, { isDeleted: true }, { new: true, session });
         if (!deletedUser) {
             throw new AppError_1.default(http_status_1.default.BAD_REQUEST, 'Failed to delete user');
         }
         yield session.commitTransaction();
         yield session.endSession();
-        return deletedStudent;
+        return deletedFaculty;
     }
     catch (err) {
         yield session.abortTransaction();
         yield session.endSession();
-        throw new Error(`Failed to delete student ${err}`);
+        throw new Error(err);
     }
 });
-exports.StudentServices = {
-    getAllStudentsFromDB,
-    getSingleStudentFromDB,
-    updateStudentIntoDB,
-    deleteStudentFromDB,
+exports.FacultyServices = {
+    getAllFacultiesFromDB,
+    getSingleFacultyFromDB,
+    updateFacultyIntoDB,
+    deleteFacultyFromDB,
 };

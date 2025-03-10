@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
+const admin_route_1 = require("../modules/Admin/admin.route");
+const course_route_1 = require("../modules/Course/course.route");
+const faculty_route_1 = require("../modules/Faculty/faculty.route");
 const academicDepartment_route_1 = require("../modules/academicDepartment/academicDepartment.route");
 const academicFaculty_route_1 = require("../modules/academicFaculty/academicFaculty.route");
 const academicSemester_route_1 = require("../modules/academicSemester/academicSemester.route");
@@ -17,6 +20,14 @@ const moduleRoutes = [
         route: student_route_1.StudentRoutes,
     },
     {
+        path: '/faculties',
+        route: faculty_route_1.FacultyRoutes,
+    },
+    {
+        path: '/admins',
+        route: admin_route_1.AdminRoutes,
+    },
+    {
         path: '/academic-semesters',
         route: academicSemester_route_1.AcademicSemesterRoutes,
     },
@@ -27,6 +38,10 @@ const moduleRoutes = [
     {
         path: '/academic-departments',
         route: academicDepartment_route_1.AcademicDepartmentRoutes,
+    },
+    {
+        path: '/courses',
+        route: course_route_1.CourseRoutes,
     },
 ];
 moduleRoutes.forEach((route) => router.use(route.path, route.route));
