@@ -26,18 +26,26 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.StudentServices = void 0;
 const http_status_1 = __importDefault(require("http-status"));
 const mongoose_1 = __importDefault(require("mongoose"));
+const QueryBuilder_1 = __importDefault(require("../../builder/QueryBuilder"));
 const AppError_1 = __importDefault(require("../../errors/AppError"));
 const user_model_1 = require("../user/user.model");
+const student_constant_1 = require("./student.constant");
 const student_model_1 = require("./student.model");
-const getAllStudentsFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield student_model_1.Student.find()
+const getAllStudentsFromDB = (query) => __awaiter(void 0, void 0, void 0, function* () {
+    const studentQuery = new QueryBuilder_1.default(student_model_1.Student.find()
         .populate('admissionSemester')
         .populate({
         path: 'academicDepartment',
         populate: {
             path: 'academicFaculty',
         },
-    });
+    }), query)
+        .search(student_constant_1.studentSearchableFields)
+        .filter()
+        .sort()
+        .paginate()
+        .fields();
+    const result = yield studentQuery.modelQuery;
     return result;
 });
 const getSingleStudentFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
@@ -54,16 +62,6 @@ const getSingleStudentFromDB = (id) => __awaiter(void 0, void 0, void 0, functio
 const updateStudentIntoDB = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, guardian, localGuardian } = payload, remainingStudentData = __rest(payload, ["name", "guardian", "localGuardian"]);
     const modifiedUpdatedData = Object.assign({}, remainingStudentData);
-    /*
-      guardain: {
-        fatherOccupation:"Teacher"
-      }
-  
-      guardian.fatherOccupation = Teacher
-  
-      name.firstName = 'Mezba'
-      name.lastName = 'Abedin'
-    */
     if (name && Object.keys(name).length) {
         for (const [key, value] of Object.entries(name)) {
             modifiedUpdatedData[`name.${key}`] = value;
