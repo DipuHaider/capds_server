@@ -33,6 +33,21 @@ class QueryBuilder<T> {
 
     excludeFields.forEach((el) => delete queryObj[el]);
 
+    // Handle type conversion for fields that should be numbers (e.g., `fee`)
+    Object.keys(queryObj).forEach((key) => {
+      // Check if the field is `fee` or any other field that should be a number
+      if (key === 'fee' && typeof queryObj[key] === 'string') {
+        // Try to parse the fee as a number
+        const parsedFee = Number(queryObj[key]);
+        if (!isNaN(parsedFee)) {
+          queryObj[key] = parsedFee; // Replace with the parsed number if valid
+        } else {
+          delete queryObj[key]; // If invalid, remove the field from the query
+        }
+      }
+    });
+    //End of type conversion
+
     this.modelQuery = this.modelQuery.find(queryObj as FilterQuery<T>);
 
     return this;

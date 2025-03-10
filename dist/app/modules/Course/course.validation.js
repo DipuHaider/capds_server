@@ -12,6 +12,8 @@ const createCourseValidationSchema = zod_1.z.object({
         prefix: zod_1.z.string(),
         code: zod_1.z.number(),
         credits: zod_1.z.number(),
+        fee: zod_1.z.number(),
+        feeType: zod_1.z.enum(['onetime', 'monthly']),
         preRequisiteCourses: zod_1.z.array(PreRequisiteCourseValidationSchema).optional(),
         isDeleted: zod_1.z.boolean().optional(),
     }),
@@ -26,6 +28,8 @@ const updateCourseValidationSchema = zod_1.z.object({
         prefix: zod_1.z.string().optional(),
         code: zod_1.z.number().optional(),
         credits: zod_1.z.number().optional(),
+        fee: zod_1.z.number().optional(),
+        feeType: zod_1.z.enum(['onetime', 'monthly']).optional(),
         preRequisiteCourses: zod_1.z
             .array(updatePreRequisiteCourseValidationSchema)
             .optional(),

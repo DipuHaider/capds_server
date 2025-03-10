@@ -10,11 +10,13 @@ export type TCourse = {
   prefix: string;
   code: number;
   credits: number;
+  fee: number;
+  feeType: 'onetime' | 'monthly';
   isDeleted?: boolean;
   preRequisiteCourses: [TPreRequisiteCourses];
 };
 
-export type TCoursefaculty = {
+export type TCourseFaculty = {
   course: Types.ObjectId;
   faculties: [Types.ObjectId];
 };

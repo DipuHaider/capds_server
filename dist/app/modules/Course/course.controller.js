@@ -22,7 +22,7 @@ const createCourse = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, v
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Course is created succesfully',
+        message: 'Course is created successfully',
         data: result,
     });
 }));
@@ -41,7 +41,7 @@ const getSingleCourse = (0, catchAsync_1.default)((req, res) => __awaiter(void 0
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Course is retrieved succesfully',
+        message: 'Course is retrieved successfully',
         data: result,
     });
 }));
@@ -51,7 +51,7 @@ const updateCourse = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, v
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'course is updated succesfully',
+        message: 'course is updated successfully',
         data: result,
     });
 }));
@@ -61,7 +61,7 @@ const deleteCourse = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, v
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Course is deleted succesfully',
+        message: 'Course is deleted successfully',
         data: result,
     });
 }));
@@ -72,7 +72,7 @@ const assignFacultiesWithCourse = (0, catchAsync_1.default)((req, res) => __awai
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Faculties assigned  succesfully',
+        message: 'Faculties assigned  successfully',
         data: result,
     });
 }));
@@ -83,7 +83,7 @@ const removeFacultiesFromCourse = (0, catchAsync_1.default)((req, res) => __awai
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Faculties removed  succesfully',
+        message: 'Faculties removed  successfully',
         data: result,
     });
 }));

@@ -36,6 +36,19 @@ const courseSchema = new mongoose_1.Schema({
         trim: true,
         required: true,
     },
+    fee: {
+        type: Number,
+        trim: true,
+        required: true,
+    },
+    feeType: {
+        type: String,
+        enum: {
+            values: ['onetime', 'monthly'],
+            message: '{VALUE} is not a valid Fee Type',
+        },
+        required: [true, 'Fee Type is required'],
+    },
     preRequisiteCourses: [preRequisiteCoursesSchema],
     isDeleted: {
         type: Boolean,

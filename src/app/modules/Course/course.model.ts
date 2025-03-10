@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
 import {
   TCourse,
-  TCoursefaculty,
+  TCourseFaculty,
   TPreRequisiteCourses,
 } from './course.interface';
 
@@ -44,6 +44,19 @@ const courseSchema = new Schema<TCourse>(
       trim: true,
       required: true,
     },
+    fee: {
+      type: Number,
+      trim: true,
+      required: true,
+    },
+    feeType: {
+      type: String,
+      enum: {
+        values: ['onetime', 'monthly'],
+        message: '{VALUE} is not a valid Fee Type',
+      },
+      required: [true, 'Fee Type is required'],
+    },
     preRequisiteCourses: [preRequisiteCoursesSchema],
     isDeleted: {
       type: Boolean,
@@ -57,7 +70,7 @@ const courseSchema = new Schema<TCourse>(
 
 export const Course = model<TCourse>('Course', courseSchema);
 
-const courseFacultySchema = new Schema<TCoursefaculty>({
+const courseFacultySchema = new Schema<TCourseFaculty>({
   course: {
     type: Schema.Types.ObjectId,
     ref: 'Course',
@@ -71,7 +84,7 @@ const courseFacultySchema = new Schema<TCoursefaculty>({
   ],
 });
 
-export const CourseFaculty = model<TCoursefaculty>(
+export const CourseFaculty = model<TCourseFaculty>(
   'CourseFaculty',
   courseFacultySchema,
 );
