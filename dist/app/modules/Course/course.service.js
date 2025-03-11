@@ -103,6 +103,7 @@ const updateCourseIntoDB = (id, payload) => __awaiter(void 0, void 0, void 0, fu
     catch (err) {
         yield session.abortTransaction();
         yield session.endSession();
+        console.log(err);
         throw new AppError_1.default(http_status_1.default.BAD_REQUEST, 'Failed to update course');
     }
 });
