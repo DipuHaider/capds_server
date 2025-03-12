@@ -27,23 +27,22 @@ const createOfferedCourse = (0, catchAsync_1.default)((req, res) => __awaiter(vo
     });
 }));
 const getAllOfferedCourses = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    //   const result =
-    //   sendResponse(res, {
-    //     statusCode: httpStatus.OK,
-    //     success: true,
-    //     message: 'OfferedCourses retrieved successfully !',
-    //     data: result,
-    //   });
+    const result = yield OfferedCourse_service_1.OfferedCourseServices.createOfferedCourseIntoDB(req.body);
+    (0, sendResponse_1.default)(res, {
+        statusCode: http_status_1.default.OK,
+        success: true,
+        message: 'OfferedCourses retrieved successfully !',
+        data: result,
+    });
 }));
 const getSingleOfferedCourses = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.params;
-    //   const result =
-    //   sendResponse(res, {
-    //     statusCode: httpStatus.OK,
-    //     success: true,
-    //     message: 'OfferedCourse fetched successfully',
-    //     data: result,
-    //   });
+    const result = yield OfferedCourse_service_1.OfferedCourseServices.getAllOfferedCoursesFromDB(req.query);
+    (0, sendResponse_1.default)(res, {
+        statusCode: http_status_1.default.OK,
+        success: true,
+        message: 'Semester Registration is retrieved successfully !',
+        data: result,
+    });
 }));
 const updateOfferedCourse = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
