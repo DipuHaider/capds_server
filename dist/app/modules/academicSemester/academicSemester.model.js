@@ -54,10 +54,10 @@ academicSemesterSchema.pre('save', function (next) {
 });
 exports.AcademicSemester = (0, mongoose_1.model)('AcademicSemester', academicSemesterSchema);
 // Name Year
-//2030 Autumn => Created
-// 2031 Autumn
-//2030 Autumn => XXX
+//2030 Spring => Created
+// 2031 Spring
+//2030 Spring => XXX
 //2030 Fall => Created
-// Autumn 01
+// Spring 01
 // Summer 02
 // Fall 03

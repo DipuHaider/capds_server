@@ -39,7 +39,8 @@ const getAllStudentsFromDB = (query) => __awaiter(void 0, void 0, void 0, functi
         populate: {
             path: 'academicFaculty',
         },
-    }), query)
+    })
+        .populate('course'), query)
         .search(student_constant_1.studentSearchableFields)
         .filter()
         .sort()
@@ -56,7 +57,8 @@ const getSingleStudentFromDB = (id) => __awaiter(void 0, void 0, void 0, functio
         populate: {
             path: 'academicFaculty',
         },
-    });
+    })
+        .populate('course');
     return result;
 });
 const updateStudentIntoDB = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {

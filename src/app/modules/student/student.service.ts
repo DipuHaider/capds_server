@@ -16,7 +16,8 @@ const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
         populate: {
           path: 'academicFaculty',
         },
-      }),
+      })
+      .populate('course'),
     query,
   )
     .search(studentSearchableFields)
@@ -37,7 +38,8 @@ const getSingleStudentFromDB = async (id: string) => {
       populate: {
         path: 'academicFaculty',
       },
-    });
+    })
+    .populate('course');
   return result;
 };
 

@@ -46,6 +46,7 @@ export const createStudentValidationSchema = z.object({
       admissionSemester: z.string(),
       profileImg: z.string(),
       academicDepartment: z.string(),
+      course: z.string(),
     }),
   }),
 });
@@ -91,6 +92,7 @@ export const updateStudentValidationSchema = z.object({
       admissionSemester: z.string().optional(),
       profileImg: z.string().optional(),
       academicDepartment: z.string().optional(),
+      course: z.string().optional(),
     }),
   }),
 });

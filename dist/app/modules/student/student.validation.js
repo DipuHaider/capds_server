@@ -45,6 +45,7 @@ exports.createStudentValidationSchema = zod_1.z.object({
             admissionSemester: zod_1.z.string(),
             profileImg: zod_1.z.string(),
             academicDepartment: zod_1.z.string(),
+            course: zod_1.z.string(),
         }),
     }),
 });
@@ -86,6 +87,7 @@ exports.updateStudentValidationSchema = zod_1.z.object({
             admissionSemester: zod_1.z.string().optional(),
             profileImg: zod_1.z.string().optional(),
             academicDepartment: zod_1.z.string().optional(),
+            course: zod_1.z.string().optional(),
         }),
     }),
 });

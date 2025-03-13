@@ -1,0 +1,16 @@
+[{
+  "_id": {
+    "$oid": "67cd2802f8c6b73047502afe"
+  },
+  "name": "Department of Biology",
+  "academicFaculty": {
+    "$oid": "67cd22e1f8c6b73047502af5"
+  },
+  "createdAt": {
+    "$date": "2025-03-09T05:32:50.921Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-09T05:35:22.727Z"
+  },
+  "__v": 0
+}]
