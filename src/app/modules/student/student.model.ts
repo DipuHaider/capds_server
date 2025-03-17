@@ -150,6 +150,10 @@ const studentSchema = new Schema<TStudent, StudentModel>(
       type: Schema.Types.ObjectId,
       ref: 'Course',
     },
+    batch: {
+      type: Schema.Types.ObjectId,
+      ref: 'Batch',
+    },
   },
   {
     toJSON: {

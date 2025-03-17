@@ -42,6 +42,7 @@ export type TStudent = {
   isDeleted: boolean;
   academicDepartment: Types.ObjectId;
   course: Types.ObjectId;
+  batch: Types.ObjectId;
 };
 
 //for creating static
