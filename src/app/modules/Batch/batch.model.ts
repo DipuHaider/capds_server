@@ -6,6 +6,7 @@ const batchSchema = new Schema<TBatch>(
     course: {
       type: Schema.Types.ObjectId,
       ref: 'Course',
+      required: true, // Ensuring a valid course is always selected
     },
     title: {
       type: String,
@@ -13,7 +14,7 @@ const batchSchema = new Schema<TBatch>(
     },
     prefix: {
       type: String,
-      required: true,
+      required: false, // Optional prefix
     },
     code: {
       type: Number,
@@ -21,22 +22,26 @@ const batchSchema = new Schema<TBatch>(
     },
     days: [
       {
-        type: String,
-        enum: [
-          'Friday',
-          'Saturday',
-          'Sunday',
-          'Monday',
-          'Tuesday',
-          'Wednesday',
-          'Thursday',
-        ],
+        day: {
+          type: String,
+          enum: [
+            'Friday',
+            'Saturday',
+            'Sunday',
+            'Monday',
+            'Tuesday',
+            'Wednesday',
+            'Thursday',
+          ],
+          required: true,
+        },
+        time: {
+          type: String,
+          required: true, // Ensures time is given for each selected day
+        },
       },
     ],
-    startTime: {
-      type: String,
-      required: true,
-    },
+    students: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     isActive: {
       type: Boolean,
       default: true,

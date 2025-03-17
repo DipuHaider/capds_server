@@ -10,6 +10,7 @@ import { semesterRegistrationRoutes } from '../modules/semesterRegistration/seme
 import { StudentRoutes } from '../modules/student/student.route';
 import { UserRoutes } from '../modules/user/user.route';
 import { AuthRoutes } from '../modules/Auth/auth.route';
+import { BatchRoutes } from '../modules/Batch/batch.route';
 
 const router = Router();
 
@@ -45,6 +46,10 @@ const moduleRoutes = [
   {
     path: '/courses',
     route: CourseRoutes,
+  },
+  {
+    path: '/batches',
+    route: BatchRoutes,
   },
   {
     path: '/semester-registrations',

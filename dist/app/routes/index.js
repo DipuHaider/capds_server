@@ -12,6 +12,7 @@ const semesterRegistration_route_1 = require("../modules/semesterRegistration/se
 const student_route_1 = require("../modules/student/student.route");
 const user_route_1 = require("../modules/user/user.route");
 const auth_route_1 = require("../modules/Auth/auth.route");
+const batch_route_1 = require("../modules/Batch/batch.route");
 const router = (0, express_1.Router)();
 const moduleRoutes = [
     {
@@ -45,6 +46,10 @@ const moduleRoutes = [
     {
         path: '/courses',
         route: course_route_1.CourseRoutes,
+    },
+    {
+        path: '/batches',
+        route: batch_route_1.BatchRoutes,
     },
     {
         path: '/semester-registrations',
