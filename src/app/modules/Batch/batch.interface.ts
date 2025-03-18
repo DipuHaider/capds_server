@@ -15,7 +15,6 @@ export type TBatchDay = {
 };
 
 export type TBatch = {
-  _id?: Types.ObjectId;
   course: Types.ObjectId;
   title: string;
   prefix?: string; // Made optional
