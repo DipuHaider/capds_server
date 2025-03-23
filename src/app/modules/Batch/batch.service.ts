@@ -13,7 +13,7 @@ const createBatchIntoDB = async (payload: TBatch) => {
 
 const getAllBatchesFromDB = async (query: Record<string, unknown>) => {
   const courseQuery = new QueryBuilder(
-    Batch.find(),
+    Batch.find().populate('course'),
     // .populate('course'),  // Uncomment if you need to populate course
     query,
   )
