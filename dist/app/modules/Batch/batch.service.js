@@ -24,7 +24,7 @@ const createBatchIntoDB = (payload) => __awaiter(void 0, void 0, void 0, functio
     return result;
 });
 const getAllBatchesFromDB = (query) => __awaiter(void 0, void 0, void 0, function* () {
-    const courseQuery = new QueryBuilder_1.default(batch_model_1.Batch.find(), 
+    const courseQuery = new QueryBuilder_1.default(batch_model_1.Batch.find().populate('course'), 
     // .populate('course'),  // Uncomment if you need to populate course
     query)
         .search(batch_constant_1.BatchSearchableFields)
