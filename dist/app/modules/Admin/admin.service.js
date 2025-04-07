@@ -43,7 +43,8 @@ const getAllAdminsFromDB = (query) => __awaiter(void 0, void 0, void 0, function
     return result;
 });
 const getSingleAdminFromDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield admin_model_1.Admin.findById(id);
+    // const result = await Admin.findById(id);
+    const result = yield admin_model_1.Admin.findOne({ id }); // Use the `id` field instead of _id
     return result;
 });
 const updateAdminIntoDB = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {

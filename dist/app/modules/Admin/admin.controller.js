@@ -18,12 +18,14 @@ const catchAsync_1 = __importDefault(require("../../utils/catchAsync"));
 const sendResponse_1 = __importDefault(require("../../utils/sendResponse"));
 const admin_service_1 = require("./admin.service");
 const getSingleAdmin = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.params;
-    const result = yield admin_service_1.AdminServices.getSingleAdminFromDB(id);
+    // const { id } = req.params;
+    // const result = await AdminServices.getSingleAdminFromDB(id);
+    const { adminId } = req.params;
+    const result = yield admin_service_1.AdminServices.getSingleAdminFromDB(adminId);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Admin is retrieved succesfully',
+        message: 'Admin is retrieved successfully',
         data: result,
     });
 }));
@@ -32,7 +34,7 @@ const getAllAdmins = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, v
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Admins are retrieved succesfully',
+        message: 'Admins are retrieved successfully',
         data: result,
     });
 }));
@@ -43,7 +45,7 @@ const updateAdmin = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, vo
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Admin is updated succesfully',
+        message: 'Admin is updated successfully',
         data: result,
     });
 }));
@@ -53,7 +55,7 @@ const deleteAdmin = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, vo
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Admin is deleted succesfully',
+        message: 'Admin is deleted successfully',
         data: result,
     });
 }));
