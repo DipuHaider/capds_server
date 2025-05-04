@@ -8,25 +8,25 @@ const router = express.Router();
 
 router.post(
   '/create-batch',
-  auth('admin'),
+  auth('ADMIN'),
   validateRequest(BatchValidations.createBatchValidationSchema),
   BatchControllers.createBatch,
 );
 
 router.get(
   '/:id',
-  auth('student', 'faculty', 'admin'),
+  auth('STUDENT', 'FACULTY', 'ADMIN'),
   BatchControllers.getSingleBatch,
 );
 
 router.patch(
   '/:id',
-  auth('admin'),
+  auth('ADMIN'),
   validateRequest(BatchValidations.updateBatchValidationSchema),
   BatchControllers.updateBatch,
 );
 
-router.delete('/:id', auth('admin'), BatchControllers.deleteBatch);
+router.delete('/:id', auth('ADMIN'), BatchControllers.deleteBatch);
 
 router.put(
   '/:batchId/assign-students',

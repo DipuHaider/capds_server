@@ -14,5 +14,5 @@ const router = express_1.default.Router();
 router.get('/:id', faculty_controller_1.FacultyControllers.getSingleFaculty);
 router.patch('/:id', (0, validateRequest_1.default)(faculty_validation_1.updateFacultyValidationSchema), faculty_controller_1.FacultyControllers.updateFaculty);
 router.delete('/:id', faculty_controller_1.FacultyControllers.deleteFaculty);
-router.get('/', (0, auth_1.default)(user_constant_1.USER_ROLE.admin, user_constant_1.USER_ROLE.faculty), faculty_controller_1.FacultyControllers.getAllFaculties);
+router.get('/', (0, auth_1.default)(user_constant_1.USER_ROLE.ADMIN, user_constant_1.USER_ROLE.FACULTY), faculty_controller_1.FacultyControllers.getAllFaculties);
 exports.FacultyRoutes = router;

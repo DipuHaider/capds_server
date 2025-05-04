@@ -10,10 +10,10 @@ const validateRequest_1 = __importDefault(require("../../middlewares/validateReq
 const batch_controller_1 = require("./batch.controller");
 const batch_validation_1 = require("./batch.validation");
 const router = express_1.default.Router();
-router.post('/create-batch', (0, auth_1.default)('admin'), (0, validateRequest_1.default)(batch_validation_1.BatchValidations.createBatchValidationSchema), batch_controller_1.BatchControllers.createBatch);
-router.get('/:id', (0, auth_1.default)('student', 'faculty', 'admin'), batch_controller_1.BatchControllers.getSingleBatch);
-router.patch('/:id', (0, auth_1.default)('admin'), (0, validateRequest_1.default)(batch_validation_1.BatchValidations.updateBatchValidationSchema), batch_controller_1.BatchControllers.updateBatch);
-router.delete('/:id', (0, auth_1.default)('admin'), batch_controller_1.BatchControllers.deleteBatch);
+router.post('/create-batch', (0, auth_1.default)('ADMIN'), (0, validateRequest_1.default)(batch_validation_1.BatchValidations.createBatchValidationSchema), batch_controller_1.BatchControllers.createBatch);
+router.get('/:id', (0, auth_1.default)('STUDENT', 'FACULTY', 'ADMIN'), batch_controller_1.BatchControllers.getSingleBatch);
+router.patch('/:id', (0, auth_1.default)('ADMIN'), (0, validateRequest_1.default)(batch_validation_1.BatchValidations.updateBatchValidationSchema), batch_controller_1.BatchControllers.updateBatch);
+router.delete('/:id', (0, auth_1.default)('ADMIN'), batch_controller_1.BatchControllers.deleteBatch);
 router.put('/:batchId/assign-students', (0, validateRequest_1.default)(batch_validation_1.BatchValidations.assignStudentsToBatchValidationSchema), batch_controller_1.BatchControllers.assignStudentsToBatch);
 router.delete('/:batchId/remove-students', (0, validateRequest_1.default)(batch_validation_1.BatchValidations.assignStudentsToBatchValidationSchema), batch_controller_1.BatchControllers.removeStudentsFromBatch);
 router.get('/', batch_controller_1.BatchControllers.getAllBatches);

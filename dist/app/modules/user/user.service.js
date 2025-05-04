@@ -31,7 +31,7 @@ const createStudentIntoDB = (password, payload) => __awaiter(void 0, void 0, voi
     //if password is not given , use default password
     userData.password = password || config_1.default.default_password;
     //set student role
-    userData.role = 'student';
+    userData.role = 'STUDENT';
     // find academic semester info
     const admissionSemester = yield academicSemester_model_1.AcademicSemester.findById(payload.admissionSemester);
     if (!admissionSemester) {
@@ -72,7 +72,7 @@ const createFacultyIntoDB = (password, payload) => __awaiter(void 0, void 0, voi
     //if password is not given , use default password
     userData.password = password || config_1.default.default_password;
     //set student role
-    userData.role = 'faculty';
+    userData.role = 'FACULTY';
     // find academic department info
     const academicDepartment = yield academicDepartment_model_1.AcademicDepartment.findById(payload.academicDepartment);
     if (!academicDepartment) {
@@ -113,7 +113,7 @@ const createAdminIntoDB = (password, payload) => __awaiter(void 0, void 0, void 
     //if password is not given , use deafult password
     userData.password = password || config_1.default.default_password;
     //set student role
-    userData.role = 'admin';
+    userData.role = 'ADMIN';
     const session = yield mongoose_1.default.startSession();
     try {
         session.startTransaction();

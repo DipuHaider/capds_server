@@ -19,7 +19,7 @@ router.delete('/:id', FacultyControllers.deleteFaculty);
 
 router.get(
   '/',
-  auth(USER_ROLE.admin, USER_ROLE.faculty),
+  auth(USER_ROLE.ADMIN, USER_ROLE.FACULTY),
   FacultyControllers.getAllFaculties,
 );
 

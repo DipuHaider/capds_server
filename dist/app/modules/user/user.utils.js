@@ -13,7 +13,7 @@ exports.generateAdminId = exports.findLastAdminId = exports.generateFacultyId = 
 const user_model_1 = require("./user.model");
 const findLastStudentId = () => __awaiter(void 0, void 0, void 0, function* () {
     const lastStudent = yield user_model_1.User.findOne({
-        role: 'student',
+        role: 'STUDENT',
     }, {
         id: 1,
         _id: 0,
@@ -44,7 +44,7 @@ exports.generateStudentId = generateStudentId;
 // Faculty ID
 const findLastFacultyId = () => __awaiter(void 0, void 0, void 0, function* () {
     const lastFaculty = yield user_model_1.User.findOne({
-        role: 'faculty',
+        role: 'FACULTY',
     }, {
         id: 1,
         _id: 0,
@@ -70,7 +70,7 @@ exports.generateFacultyId = generateFacultyId;
 // Admin ID
 const findLastAdminId = () => __awaiter(void 0, void 0, void 0, function* () {
     const lastAdmin = yield user_model_1.User.findOne({
-        role: 'admin',
+        role: 'ADMIN',
     }, {
         id: 1,
         _id: 0,
