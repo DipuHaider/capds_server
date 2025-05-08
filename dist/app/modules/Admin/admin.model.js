@@ -44,7 +44,7 @@ const adminSchema = new mongoose_1.Schema({
     },
     designation: {
         type: String,
-        required: [true, 'Designation is required'],
+        // required: [true, 'Designation is required'],
     },
     name: {
         type: userNameSchema,
@@ -67,7 +67,7 @@ const adminSchema = new mongoose_1.Schema({
     contactNo: { type: String, required: [true, 'Contact number is required'] },
     emergencyContactNo: {
         type: String,
-        required: [true, 'Emergency contact number is required'],
+        // required: [true, 'Emergency contact number is required'],
     },
     bloodGroup: {
         type: String,
@@ -78,11 +78,11 @@ const adminSchema = new mongoose_1.Schema({
     },
     presentAddress: {
         type: String,
-        required: [true, 'Present address is required'],
+        // required: [true, 'Present address is required'],
     },
     permanentAddress: {
         type: String,
-        required: [true, 'Permanent address is required'],
+        // required: [true, 'Permanent address is required'],
     },
     profileImg: { type: String },
     isDeleted: {
