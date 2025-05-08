@@ -50,7 +50,7 @@ const adminSchema = new Schema<TAdmin, AdminModel>(
       },
       required: [true, 'Gender is required'],
     },
-    dateOfBirth: { type: Date },
+    dateOfBirth: { type: Date, required: [true, 'Date of birth is required'] },
     email: {
       type: String,
       required: [true, 'Email is required'],
