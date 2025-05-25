@@ -22,6 +22,7 @@ app.use((0, cors_1.default)({
         'https://capdsadmin.netlify.app',
     ],
     credentials: true,
+    allowedHeaders: [`"Authorization", "Content-Type"`],
 }));
 // application routes
 app.use('/api/v1', routes_1.default);
