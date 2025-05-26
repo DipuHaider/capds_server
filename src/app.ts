@@ -20,7 +20,8 @@ app.use(
       'https://capdsadmin.netlify.app',
     ],
     credentials: true,
-    allowedHeaders: [`"Authorization", "Content-Type"`],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Authorization', 'Content-Type'],
   }),
 );
 
