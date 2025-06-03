@@ -35,7 +35,7 @@ const createCourseIntoDB = (payload) => __awaiter(void 0, void 0, void 0, functi
     return result;
 });
 const getAllCoursesFromDB = (query) => __awaiter(void 0, void 0, void 0, function* () {
-    const courseQuery = new QueryBuilder_1.default(course_model_1.Course.find(), 
+    const courseQuery = new QueryBuilder_1.default(course_model_1.Course.find({ isDeleted: false }), 
     // .populate('preRequisiteCourses.course'),
     query)
         .search(course_constant_1.CourseSearchableFields)
